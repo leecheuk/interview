@@ -1,10 +1,13 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const PORT = 3002;
 
 // serve html in public
 app.use(express.static(path.join(__dirname, 'public')));
+// for parsing body 
+app.use(bodyParser.json());
 
 app.get("/api", (req, res) => {
     res.set('Api-Version', '1.0.0');
