@@ -10,4 +10,8 @@ app.get("/api", (req, res) => {
     res.status(200).json({ data: "data" });
 });
 
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+})
+
 app.listen(PORT);

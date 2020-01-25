@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Download</title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@4.2.2/umd/react-router-dom.js"></script>
     <script>
         Babel.registerPreset('app-preset', {
             presets: [
@@ -21,6 +23,8 @@
             ]
         })
     </script>
+    <script type="text/babel" src="Nav.js" data-presets="app-preset"></script>
+    <script type="text/babel" src="Admin.js" data-presets="app-preset"></script>
     <script type="text/babel" src="App.js" data-presets="app-preset"></script>
     <script type="text/babel" src="index.js" data-presets="app-preset"></script>
     <div id="root"></div>
