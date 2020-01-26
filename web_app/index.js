@@ -40,6 +40,9 @@ const serverLogger = winston.createLogger({
     ]
 });
 
+
+
+
 /**
  * Calculate transmission rate from server to client.
  * FORMULA:
@@ -137,13 +140,14 @@ app.get("/api/image", (req, res) => {
         }
     })
     ps.pipe(res);
+    ps.on('finish', () => {
+        res.end();
+    });
 });
-
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
-    res.end();
-})
+});
 
 app.listen(PORT, () => {
     console.log(`App started: http://localhost:${PORT}`);
