@@ -1,6 +1,5 @@
 # Web App
-The web app is to provide an api service to request for download bandwidth information. The main question is what is the
-formula to calculate download speed. 
+The web app is to provide an api service to request for download bandwidth information. The main question of concern is what is the formula for download speed.
 
 ## Product Backlog
 - diagnostic tool
@@ -13,6 +12,14 @@ Json is used for loosely coupled communication with other apps. An api layer bet
 ## Problems
 Server speed seems too low, probably need to look through the api again and do 
 more research on tcp to see how the handshakes and time to first byte works. 
+
+## Usage
+```
+npm run start
+```
+
+## GUI
+![](web_app.gif)
 
 ## Credits
 - Image is from [effigis](https://effigis.com/en/solutions/satellite-images/satellite-image-samples/)
