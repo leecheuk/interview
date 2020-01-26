@@ -1,10 +1,7 @@
 import Nav from './Nav';
 const { Link } = ReactRouterDOM;
-<<<<<<< HEAD
-=======
 const { useState, useEffect } = React;
 import Speed from './speed';
->>>>>>> develop
 
 const App = () => {
     useEffect(() => {
