@@ -94,13 +94,6 @@ app.get("/api", (req, res) => {
     res.json({data: text}).end();
 });
 
-<<<<<<< HEAD
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
-})
-
-app.listen(PORT);
-=======
 /**
  * Allow user to post download speeds.
  */
@@ -173,4 +166,3 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
     console.log(`App started: http://localhost:${PORT}`);
 });
->>>>>>> develop
