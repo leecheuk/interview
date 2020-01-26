@@ -13,3 +13,15 @@ li::after {
 li:last-child::after {
     content: none;
 }
+table {
+    border-collapse: collapse;
+    border: 1px solid #eee;
+    margin-top: 20px;
+}
+tr td:nth-child(2) {
+    text-align: center;
+    width: 200px;
+}
+td, th {
+    padding: 7px 15px;
+}
