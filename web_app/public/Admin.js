@@ -41,8 +41,6 @@ const Admin = () => {
         <div>
             <Nav />
             <h1>Admin Dashboard</h1>
-<<<<<<< HEAD
-=======
             <button onClick={handleClickTest}>{!isTesting ? "Test" : "Testing"} server speed</button>
             <table>
                 <thead>
@@ -77,7 +75,6 @@ const Admin = () => {
                 network bandwidth available to your server as well as the maximum number
                 of potential users for estimation. 
             </p>
->>>>>>> develop
         </div>
     )
 }
