@@ -11,5 +11,5 @@ formula to calculate download speed.
 Json is used for loosely coupled communication with other apps. An api layer between other services should be used to sanitize and validate information before sending to user. 
 
 ## Credits
-Image is from [effigis](https://effigis.com/en/solutions/satellite-images/satellite-image-samples/)
-Good design & implementation patterns are based on advice from interviewers
+- Image is from [effigis](https://effigis.com/en/solutions/satellite-images/satellite-image-samples/)
+- Good design & implementation patterns are based on advice from interviewers
