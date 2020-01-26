@@ -4,7 +4,7 @@
   "description": "The web app is to provide an api service to request for download bandwidth information.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index",
+    "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
