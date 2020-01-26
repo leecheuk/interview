@@ -124,7 +124,7 @@ app.get("/api/stats", (req, res) => {
     }).on('close', () => {
         let d = responseObj.data;
         d.effective_bandwidth = Math.max(...d.dataset);
-        d.throughput = d.dataset.reduce((acc, cur) => acc + cur);
+        d.throughput = d.dataset.reduce((acc, cur) => acc + cur) / d.dataset.length;
         d.bottleneck = Math.min(...d.dataset);
         res.json(responseObj).end();
     });
