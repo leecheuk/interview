@@ -1,10 +1,15 @@
 # Web App
-The web app is to provide an api service to request for download bandwidth information.
+The web app is to provide an api service to request for download bandwidth information. The main question is what is the
+formula to calculate download speed. 
 
-## User Backlog
+## Product Backlog
 - diagnostic tool
 - response UI
 - user feedback 
 
 ## Design
 Json is used for loosely coupled communication with other apps. An api layer between other services should be used to sanitize and validate information before sending to user. 
+
+## Credits
+Image is from [effigis](https://effigis.com/en/solutions/satellite-images/satellite-image-samples/)
+Good design & implementation patterns are based on advice from interviewers
