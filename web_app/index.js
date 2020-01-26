@@ -95,6 +95,20 @@ app.get("/api", (req, res) => {
 });
 
 /**
+ * Allow user to post download speeds.
+ */
+app.post("/api/test", (req, res) => {
+    // implement a more robust validation and sanitization for calculations later
+    if (typeof req.body.val !== 'undefined' || req.body.val !== null) {
+        let TR = parseFloat(req.body.val);
+        clientLogger.info(TR);
+        res.status(200).json({data: 'Successfully posted test score'});
+    } else {
+        res.status(400).json({data: 'An error has occurred'});
+    }
+});
+
+/**
  * Return transmission rate (TR) statistics 
  * - effective bandwidth: highest TR
  * - throughput: average TR
@@ -104,9 +118,9 @@ app.get("/api", (req, res) => {
 app.get("/api/stats", (req, res) => {
     let responseObj = {
         data: {
-            effective_bandwidth: null,
-            throughput: null,
-            bottleneck: null,
+            effective_bandwidth: 0,
+            throughput: 0,
+            bottleneck: 0,
             dataset: []
         }
     };
