@@ -24,10 +24,59 @@ const App = () => {
                     effective_bandwidth: new Speed(d.effective_bandwidth),
                     throughput: new Speed(d.throughput),
                     bottleneck: new Speed(d.bottleneck),
-                    dataset: new Speed(d.dataset)
-                })
+                    dataset: d.dataset
+                });     
             });
     }
+    const renderChart = () => {
+        // initialization
+        let margin = { top: 50, right: 50, bottom: 50, left: 50 };
+        let width = 500;
+        let height = 300;
+        // use index
+        let n = stats.dataset.length;
+        // (domain, range) = (x, y)
+        // Scale for x-axis
+        let xScale = d3.scaleLinear().domain([0, n - 1]).range([0, width]);
+        // Scale for y-axis; map the min, max of speed to height on chart; the mapping to y is inverse
+        let yScale = d3.scaleLinear()
+            .domain([stats.bottleneck.value, stats.effective_bandwidth.value]).range([height, 0]); 
+        // create smooth line; use scale functions to transform values
+        let line = d3.line().x((d, i) => xScale(i)).y(d => yScale(d.y))
+            .curve(d3.curveMonotoneX);
+        // transform data
+        let dataset = stats.dataset.map((d) => ({y: d}));
+        
+        // add SVG to page
+        let svg = d3.select(".chart").append("svg")
+            .attr("width", width + margin.left + margin.bottom)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // x-axis
+        // axisBottom creates an axis
+        svg.append("g").attr("class", "x-axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(xScale));
+
+        // y-axis
+        svg.append("g").attr("class", "y-axis")
+            .call(d3.axisLeft(yScale));
+
+        // add path, bind data and calls line generator
+        svg.append("path").datum(dataset).attr("class", "line").attr("d", line);
+
+        // add circle for each point; and enter data
+        svg.selectAll(".dot").data(dataset).enter().append("circle")
+            .attr("class", "dot").attr("cx", (d, i) => xScale(i))
+            .attr("cy", d => yScale(d.y)).attr("r", 5);
+    }
+    // D3 after mount
+    useEffect(() => {
+        d3.select(".chart").select("svg").remove();
+        renderChart();
+    }, [stats]);
     const [isTesting, setIsTesting] = useState(false);
     const [transmissionRate, setTransmissionRate] = useState(null);
     const handleClickTest = () => {
@@ -94,6 +143,9 @@ const App = () => {
                     </tr>
                 </tbody>
             </table>
+            <div className="chart">
+
+            </div>
         </div>
     )
 }

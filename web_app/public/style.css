@@ -25,3 +25,11 @@ tr td:nth-child(2) {
 td, th {
     padding: 7px 15px;
 }
+
+.line, .focus cirlce {
+    fill: none;
+}
+.line {
+    stroke: #333;
+
+}
