@@ -12,8 +12,6 @@ li::after {
 }
 li:last-child::after {
     content: none;
-<<<<<<< HEAD
-=======
 }
 table {
     border-collapse: collapse;
@@ -26,5 +24,4 @@ tr td:nth-child(2) {
 }
 td, th {
     padding: 7px 15px;
->>>>>>> develop
 }

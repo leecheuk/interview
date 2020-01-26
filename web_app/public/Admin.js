@@ -1,9 +1,5 @@
 import Nav from './Nav';
 const {Link} = ReactRouterDOM;
-<<<<<<< HEAD
-
-const Admin = () => {
-=======
 import Speed from './speed';
 
 const Admin = () => {
@@ -41,7 +37,6 @@ const Admin = () => {
             }, 5000);
         });
     };
->>>>>>> develop
     return (
         <div>
             <Nav />
