@@ -16,6 +16,7 @@ more research on tcp to see how the handshakes and time to first byte works.
 ## Usage
 ```
 cd web_app
+npm install
 npm start
 ```
 
