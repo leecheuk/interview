@@ -11,6 +11,9 @@ class Speed {
             return `${(this.val).toFixed(2)} B/s`;
         }
     }
+    get value() {
+        return this.val;
+    }
 }
 
 export default Speed;
