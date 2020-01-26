@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const fs = require('fs');
+const readline = require('readline');
 const stream = require('stream');
 const winston = require('winston');
 const PORT = 3002;
@@ -22,14 +23,20 @@ app.use("/api/*", (req, res, next) => {
 const clientLogger = winston.createLogger({
     transports: [
         new winston.transports.Console(),
-        new winston.transports.File({filename: './public/logs/log_client.log'})
+        new winston.transports.File({
+            filename: './public/logs/log_client.log',
+            label: 'transmission_rate'
+        })
     ]
 });
 const serverLogger = winston.createLogger({
     level: 'info',
     transports: [
         new winston.transports.Console(),
-        new winston.transports.File({ filename: './public/logs/log_server.log' })
+        new winston.transports.File({ 
+            filename: './public/logs/log_server.log',
+            label: 'transmission_rate' 
+        })
     ]
 });
 
@@ -92,12 +99,32 @@ app.get("/api", (req, res) => {
  * - dataset
  */
 app.get("/api/stats", (req, res) => {
+    let responseObj = {
+        data: {
+            effective_bandwidth: null,
+            throughput: null,
+            bottleneck: null,
+            dataset: []
+        }
+    };
+    let q = 'server';
+    // default is to get server TR statistics
     if (req.query.q === 'client') {
-
-    } else {
-        // default is to get server TR statistics
-
-    }
+        q = 'client';
+    } 
+    const rl = readline.createInterface({
+        input: fs.createReadStream(`./public/logs/log_${q}.log`),
+    })
+    rl.on('line', (input) => {
+        let speed = JSON.parse(input)["message"];
+        responseObj.data.dataset.push(speed);
+    }).on('close', () => {
+        let d = responseObj.data;
+        d.effective_bandwidth = Math.max(...d.dataset);
+        d.throughput = d.dataset.reduce((acc, cur) => acc + cur);
+        d.bottleneck = Math.min(...d.dataset);
+        res.json(responseObj).end();
+    });
 })
 
 // send image from image api
