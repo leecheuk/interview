@@ -15,7 +15,8 @@ more research on tcp to see how the handshakes and time to first byte works.
 
 ## Usage
 ```
-npm run start
+cd web_app
+npm start
 ```
 
 ## GUI
